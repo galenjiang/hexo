@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Home
 subtitle:
 description:
-author: John Doe
+author: galenjiang
 language:
 timezone:
 
@@ -63,19 +63,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-<<<<<<< HEAD
-theme: landscape
-=======
-theme: yilia
->>>>>>> 7fa298a2202baeb07081b5b6b66a149612c37b4f
+theme: 386
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-<<<<<<< HEAD
-  type:
-=======
   type: git
   repo: git@github.com:galenjiang/galenjiang.github.io.git
   branch: gh-pages
->>>>>>> 7fa298a2202baeb07081b5b6b66a149612c37b4f
