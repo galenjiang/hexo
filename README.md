@@ -1,1 +1,2 @@
-# function tool\n provide some function like lodash
+# function tool
+provide some function like lodash
