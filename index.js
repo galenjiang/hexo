@@ -14,5 +14,17 @@ function complement(pred) {
   };
 }
 
-export { existy, truthy, complement };
+function cat(...rest) {
+  const head = _.head(rest);
+  if (existy(head)) {
+    return head.concat(_.tail(rest)); // remove apply eg: head.concat.apply(head, _.tail(rest))
+  }
+  return [];
+}
+
+function construct(head, tail) {
+  return cat([head], _.toArray(tail));
+}
+
+export { existy, truthy, complement, cat, construct };
 
