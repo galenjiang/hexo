@@ -2,9 +2,9 @@
   "name": "my-utils",
   "version": "1.0.0",
   "description": "provide some function like lodash",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",

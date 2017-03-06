@@ -2,7 +2,7 @@
  * Created by Galen on 2017/3/4.
  */
 
-promisify_func = function(func) {
+const fbind = function(func) {
     return (...args) => {
         return new Promise((resolve, reject) => {
             resolve(func.apply(null, args));
@@ -21,7 +21,7 @@ promisify_func = function(func) {
 //     console.log(res)
 // })
 
-promisify_node = function(func) {
+const denodify = function(func) {
     return (...restArgs) => {
         return new Promise((resolve, reject) => {
             func.apply(null, [...restArgs, (err, res) => {
@@ -37,7 +37,7 @@ promisify_node = function(func) {
 /**
  * test
  */
-// const func = promisify_node((...args) => {
+// const func = promisify_denodify((...args) => {
 //     console.log(args)
 //     const res = args.slice(0, args.length -1).reduce((acc, item) => {return acc + item}, 0)
 //     return args[args.length -1].apply(null, [null, res]);
@@ -49,6 +49,6 @@ promisify_node = function(func) {
 
 
 export default {
-    func: promisify_func,
-    node: promisify_node,
+    fbind,
+    denodify,
 }
