@@ -10,16 +10,7 @@ const fbind = function(func) {
     }
 }
 
-/**
- * test
- */
-// const func = promisify_func((a, b, c) => {
-//     return a + b + c;
-// })
-//
-// func(1, 2, 3).then((res) => {
-//     console.log(res)
-// })
+
 
 const denodify = function(func) {
     return (...restArgs) => {
@@ -34,18 +25,6 @@ const denodify = function(func) {
     }
 }
 
-/**
- * test
- */
-// const func = promisify_denodify((...args) => {
-//     console.log(args)
-//     const res = args.slice(0, args.length -1).reduce((acc, item) => {return acc + item}, 0)
-//     return args[args.length -1].apply(null, [null, res]);
-// })
-//
-// func(1, 2, 3).then((res) => {
-//     console.log(res)
-// })
 
 
 export default {
