@@ -5,6 +5,6 @@ import base from './base';
 import promisify from './promisify';
 
 export default {
-    base,
-    promisify,
-}
+  base,
+  promisify,
+};

@@ -4,7 +4,9 @@
   "description": "provide some function like lodash",
   "main": "./lib/index.js",
   "scripts": {
-    "deploy": "babel src --out-dir lib"
+    "deploy": "babel src --out-dir lib",
+    "test": "name=galen && node -e 'console.log(process.env.name)'",
+    "test1": "node -e 'console.log(process.env.name)'"
   },
   "repository": {
     "type": "git",
