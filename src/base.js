@@ -63,8 +63,14 @@ function isa(type, action) {
   };
 }
 
-function add(a, b) {
-  return a + b;
-}
+// 代替isa 与 dispatch配合用法
+// const doWhenChunk = (type, action) => (obj) => doWhen(obj.type === type, () => action(obj))
 
-export default { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch, isa, add };
+// dispatch(
+//   doWhenChunk('a', (obj) => console.log(obj.message)),
+//   doWhenChunk('b', (obj) => console.log(obj.message)),
+// )({ type: 'a', message: 'this is type a'})
+
+
+
+export default { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch, isa };

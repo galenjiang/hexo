@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import _ from 'lodash';
 import utils from '../src/';
-const { base: { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch, isa, add } } = utils;
+const { base: { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch, isa } } = utils;
 
 // const reverse = invoker('reverse', array.prototype.reverse);
 // console.log(reverse([1, 2, 3]));
@@ -50,13 +50,29 @@ describe('test base.js', () => {
     assert.equal(doWhen(false, () => 'result'), undefined);
   });
 
+ it('invoker test', () => {
+    const splitInvoker = invoker('split', String.prototype.split)
+    assert.isFunction(splitInvoker);
+    assert.deepEqual(splitInvoker('hello', ''), ['h', 'e','l', 'l', 'o']);
+  });
+
+
+  it('dispatch test', () => {
+    const dispatchInvoker = dispatch(
+      () => {},
+      () => 'hello',
+    )
+    assert.isFunction(dispatchInvoker);
+    assert.equal(dispatchInvoker(), 'hello');
+  });
+
+  it('isa test', () => {
+    const isAHello = isa('hello', (obj) => obj.message)
+
+    assert.isFunction(isAHello);
+    assert.equal(isAHello({ type: 'hello', message: 'world' }), 'world');
+    assert.isUndefined(isAHello({ type: 'world', message: 'hello' }));
+  });
 
 });
-
-// const doWhenChunk = (type, action) => (obj) => doWhen(obj.type === type, () => action(obj))
-
-// dispatch(
-//   doWhenChunk('a', (obj) => console.log(obj.message)),
-//   doWhenChunk('b', (obj) => console.log(obj.message)),
-// )({ type: 'a', message: 'this is type a'})
 
