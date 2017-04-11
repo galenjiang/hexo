@@ -12,15 +12,15 @@ function truthy(x) {
 }
 
 function complement(pred) {
-  return function (args) {
-    return !pred.apply(null, _.toArray(args));
+  return function (...args) {
+    return !pred.apply(null, args);
   };
 }
 
 function cat(...rest) {
   const head = _.head(rest);
   if (existy(head)) {
-    return head.concat(_.tail(rest)); // remove apply eg: head.concat.apply(head, _.tail(rest))
+    return Array.prototype.concat.apply(head, _.tail(rest)); // remove apply eg: head.concat.apply(head, _.tail(rest))
   }
   return [];
 }
@@ -56,4 +56,15 @@ function dispatch(...funs) {
   };
 }
 
-export default { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch };
+// const doWhenChunk = (type, action) => (obj) => doWhen(obj.type === type, () => console.log(obj.message))
+function isa(type, action) {
+  return function(obj) {
+    if (type === obj.type) return action(obj);
+  };
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+export default { existy, truthy, complement, cat, construct, doWhen, invoker, dispatch, isa, add };
