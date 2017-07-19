@@ -1,8 +1,11 @@
 {
   "presets": [
-    ["latest", {
+    ["env", {
       "es2015": {
         "modules": "commonjs"
+      },
+      "targets": {
+        "node": "current"
       }
     }],
     "stage-0"

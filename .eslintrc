@@ -5,6 +5,8 @@
     },
     "parser": "babel-eslint",
     "rules": {
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "semi": "off",
+        "max-len":"off"
     }
 }
