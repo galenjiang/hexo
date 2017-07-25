@@ -5,6 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "deploy": "babel src --out-dir lib",
+    "manual-test": "babel-node test",
     "test": "mocha --compilers js:babel-core/register"
   },
   "repository": {

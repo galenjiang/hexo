@@ -42,6 +42,47 @@ class Matrix3 {
       (n31 * m11) + (n32 * m21) + (n33 * m31), (n31 * m12) + (n32 * m22) + (n33 * m32), (n31 * m13) + (n32 * m23) + (n33 * m33),
     ])
   }
+
+}
+
+
+class Vector3 {
+  constructor(a = 0, b = 0, c = 0) {
+    this.x = a
+    this.y = b
+    this.z = c
+  }
+  set(a = 0, b = 0, c = 0) {
+    this.x = a
+    this.y = b
+    this.z = c
+    return this
+  }
+  toArray() {
+    return [
+      this.x,
+      this.y,
+      this.z,
+    ]
+  }
+
+  applyMatrix3(m3) {
+    const { x: v1, y: v2, z: v3 } = this
+    if (!(m3 instanceof Matrix3)) {
+      throw new Error('this paramter is not an instance of Vector3')
+    }
+    const [
+      n11, n12, n13,
+      n21, n22, n23,
+      n31, n32, n33,
+    ] = m3.toArray()
+
+    return new Vector3(
+      (n11 * v1) + (n12 * v2) + (n13 * v3),
+      (n21 * v1) + (n22 * v2) + (n23 * v3),
+      (n31 * v1) + (n32 * v2) + (n33 * v3),
+    )
+  }
 }
 
 class Matrix4 {
@@ -55,6 +96,7 @@ class Matrix4 {
 }
 
 export default {
+  Vector3,
   Matrix3,
   Matrix4,
 }
