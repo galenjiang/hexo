@@ -5,7 +5,8 @@
   "main": "./lib/index.js",
   "scripts": {
     "build": "tsc",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "prettier": "prettier src/index.ts"
   },
   "repository": {
     "type": "git",
