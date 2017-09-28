@@ -6,8 +6,10 @@
   "scripts": {
     "build": "tsc",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "prettier": "prettier src/index.ts"
+    "prettier": "prettier src/index.ts --write",
+    "tslint": "tslint -c tslint.json --fix --force src/**/*.ts"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/galenjiang/utils.git"
