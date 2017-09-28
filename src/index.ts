@@ -4,8 +4,8 @@ import math from './math'
 import EventEmitter from './EventEmitter'
 
 export default {
-  base,
-  promisify,
-  math,
-  EventEmitter,
+	base,
+	promisify,
+	math,
+	EventEmitter,
 }
