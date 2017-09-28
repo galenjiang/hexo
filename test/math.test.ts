@@ -1,7 +1,7 @@
 import { assert } from 'chai'
-import _ from 'lodash'
-import utils from '../src/'
-const { math: { Vector3, Matrix3 } } = utils
+import * as _ from 'lodash'
+import * as utils from '../src/'
+const { math: { Vector3, Matrix3 } } = utils as any
 const { sin, cos, PI, round } = Math
 describe('test math.js', () => {
   it('Matrix3 test', () => {
@@ -39,9 +39,9 @@ describe('test math.js', () => {
   it('Matrix3 multiply Vector3 test', () => {
     const m3 = new Matrix3()
     m3.set([
-      cos(PI/2), - sin(PI/2), 1,
-      sin(PI/2),   cos(PI/2), 1,
-              0,           0, 1,
+      cos(PI / 2), - sin(PI / 2), 1,
+      sin(PI / 2), cos(PI / 2), 1,
+      0, 0, 1,
     ])
     const v3 = new Vector3(1, 1, 0)
     const newV3 = v3.applyMatrix3(m3)

@@ -1,5 +1,6 @@
 class Matrix3 {
-  constructor(value) {
+  elements: number[]
+  constructor(value?: number[]) {
     this.elements = value || [
       1, 0, 0,
       0, 1, 0,
@@ -20,7 +21,7 @@ class Matrix3 {
     return this.elements
   }
 
-  multiply(m) {
+  multiply(m: Matrix3) {
     if (!(m instanceof Matrix3)) {
       throw new Error('this paramter is not an instance of Matrix3')
     }
@@ -47,6 +48,9 @@ class Matrix3 {
 
 
 class Vector3 {
+  x: number
+  y: number
+  z: number
   constructor(a = 0, b = 0, c = 0) {
     this.x = a
     this.y = b
@@ -66,7 +70,7 @@ class Vector3 {
     ]
   }
 
-  applyMatrix3(m3) {
+  applyMatrix3(m3: Matrix3) {
     const { x: v1, y: v2, z: v3 } = this
     if (!(m3 instanceof Matrix3)) {
       throw new Error('this paramter is not an instance of Vector3')
@@ -86,12 +90,28 @@ class Vector3 {
 }
 
 class Matrix4 {
-  constructor(value) {
-    this.elements = value
+  elements: number[]
+  constructor(value = [
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1,
+  ]) {
+    this.elements = value || []
   }
 
-  set(value) {
-    this.elements = value
+  set([
+    n11 = 1, n12 = 0, n13 = 0, n14 = 0,
+    n21 = 0, n22 = 1, n23 = 0, n24 = 0,
+    n31 = 0, n32 = 0, n33 = 1, n34 = 0,
+    n41 = 0, n42 = 0, n43 = 0, n44 = 1,
+  ]) {
+    this.elements = [
+      n11, n12, n13, n14,
+      n21, n22, n23, n24,
+      n31, n32, n33, n34,
+      n41, n42, n43, n44,
+    ]
   }
 }
 

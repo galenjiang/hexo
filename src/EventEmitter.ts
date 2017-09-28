@@ -1,31 +1,42 @@
+type InterfaceFunc = (...args: any[]) => void
+interface InterfaceOnceFunc {
+  (...args: any[]): any
+  listener: InterfaceFunc
+}
+
 class EventEmitter {
+  events: {
+    [key: string]: any[],
+  }
   constructor() {
     this.events = {}
   }
 
-  on(eventName, listener) {
+  on(eventName: string, listener: InterfaceFunc) {
     if (!this.events[eventName]) {
       this.events[eventName] = []
     }
     this.events[eventName].push(listener)
   }
-  once(eventName, listener) {
+  once(eventName: string, listener: InterfaceFunc) {
     if (!this.events[eventName]) {
       this.events[eventName] = []
     }
-    const onceListener = (...args) => {
+    const tempListener = (...args: any[]) => {
       listener.apply(null, args)
       this.removeListener(eventName, onceListener)
     }
+    const onceListener: InterfaceOnceFunc = tempListener as InterfaceOnceFunc
+
     onceListener.listener = listener
     this.events[eventName].push(onceListener)
   }
-  emit(eventName, ...args) {
+  emit(eventName: string, ...args: any[]) {
     (this.events[eventName] || []).forEach((listener) => {
       listener.apply(null, args)
     })
   }
-  removeListener(eventName, removeListener) {
+  removeListener(eventName: string, removeListener: InterfaceFunc) {
     this.events[eventName] = (this.events[eventName] || []).filter((listener) => {
       if (listener.listener && (removeListener === listener.listener)) {
         return false
@@ -36,9 +47,12 @@ class EventEmitter {
       return true
     })
   }
-  removeAllListener(eventName) {
+  removeAllListener(eventName: string) {
     this.events[eventName] = []
   }
 }
 
+// const e = new EventEmitter()
+// e.on('click', (a, b) => console.log(a, b))
+// e.emit('click', 'a', 'b')
 export default EventEmitter
