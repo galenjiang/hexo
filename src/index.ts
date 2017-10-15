@@ -9,3 +9,4 @@ export default {
 	math,
 	EventEmitter,
 }
+

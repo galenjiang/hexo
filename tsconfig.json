@@ -7,7 +7,8 @@
     "target": "esnext",
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "moduleResolution": "node"
   },
   "files": [
     "./src/index.ts"

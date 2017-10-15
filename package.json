@@ -34,7 +34,6 @@
     "babel-preset-typescript": "^7.0.0-alpha.19",
     "babel-types": "^6.26.0",
     "chai": "^3.5.0",
-    "eslint": "^2.13.1",
     "mocha": "^3.5.0",
     "prettier": "^1.7.2",
     "ts-node": "^3.3.0",
