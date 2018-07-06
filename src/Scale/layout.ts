@@ -1,5 +1,3 @@
-import linearScale from "./linear";
-
 interface IOriginal {
   width: number
   height: number
@@ -15,18 +13,17 @@ type ILayout = 'stretch' | 'cover' | 'contain'
 interface IRect {
   x: number
   y: number
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
-
-
 
 export default class LayoutScale {
 
   private original: { width: number; height: number }
   private output: { width: number; height: number }
   private canvasLayout: ILayout
-  private spiritLayout: ILayout
+  private spriteLayout: ILayout
+
   constructor() {
     this.original = {
       width: 1,
@@ -39,7 +36,7 @@ export default class LayoutScale {
     }
 
     this.canvasLayout = 'stretch'
-    this.spiritLayout = 'contain'
+    this.spriteLayout = 'contain'
 
   }
 
@@ -56,7 +53,7 @@ export default class LayoutScale {
   }
 
   setSpiritLayout(type: ILayout) {
-    this.spiritLayout = type
+    this.spriteLayout = type
   }
 
   getPosition(x: number, y: number, type = 'stretch') {
@@ -109,14 +106,14 @@ export default class LayoutScale {
         const outputHeight = this.original.width / rangeRadio
         const margin = (outputHeight - this.original.height) / 2
 
-        lsHeight.domain([- margin, this.original.height + margin])
+        lsHeight.domain([-margin, this.original.height + margin])
         lsHeight.range([0, this.output.height])
       } else {
 
         const outputWidth = rangeRadio * this.original.height
         const margin = (outputWidth - this.original.width) / 2
 
-        lsWidth.domain([- margin, this.original.width + margin])
+        lsWidth.domain([-margin, this.original.width + margin])
         lsWidth.range([0, this.output.width])
 
         lsHeight.domain([0, this.original.height])
@@ -133,7 +130,7 @@ export default class LayoutScale {
 
   }
 
-  getCanvasRect({x: originalX, y: originalY, width: originalWidth, height: originalHeight}: IRect) {
+  getCanvasRect({ x: originalX, y: originalY, width: originalWidth, height: originalHeight }: IRect) {
     const type = this.canvasLayout
     const { x, y } = this.getPosition(originalX, originalY, type)
     const { x: x1, y: y1 } = this.getPosition(originalX + originalWidth, originalY + originalHeight, type)
@@ -144,9 +141,9 @@ export default class LayoutScale {
     }
   }
 
-  getSpiritRect({x : originalX, y: originalY, width: originalWidth, height: originalHeight}: IRect) {
-    const type = this.spiritLayout
-    const { x, y } = this.getPosition(originalX, originalY, type)
+  getSpiritRect({ x: originalX, y: originalY, width: originalWidth = 0, height: originalHeight = 0 }: IRect) {
+    const type = this.spriteLayout
+    const { x, y } = this.getPosition(originalX, originalY, this.canvasLayout)
     const { x: x1, y: y1 } = this.getPosition(originalX + originalWidth, originalY + originalHeight, type)
     return {
       x, y,
